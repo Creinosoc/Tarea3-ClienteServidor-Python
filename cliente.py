@@ -6,7 +6,7 @@ import socket
 import sys
 
 if len(sys.argv) != 3:
-    print "Agregar la IP del servidor y el puerto donde se ofrece el servicio."
+    print "Agregar la IP kkdel servidor y el puerto donde se ofrece el servicio."
     sys.exit(0)
 
 IP = sys.argv[1]
