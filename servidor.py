@@ -4,12 +4,33 @@
 
 import socket
 import sys
+import random
+
+#-------------------------------------------------------
+caras = 6
+dado1 = []
+dado2 = []
+intentos = 3
+
+def dado(dado,n_intentos):
+    suma = 0
+    for i in range(0, n_intentos):
+        print "Tiro el dado ",i+1," veces"
+        dado.append(random.randint(1,caras))
+        print "Dado 1 = ", dado
+        suma = suma + dado[i]
+
+    print "Total = ",suma
+
+
+dado(dado1,intentos)
+#-------------------------------------------------------
 
 if len(sys.argv) != 2:
     print "Agregar el puerto donde se va a ofrecer el servicio."
     sys.exit(0)
 
-IP = "localhost"
+IP = "192.168.122.89"
 PUERTO = int(sys.argv[1])
 
 print "\nServicio se va a configurar en el puerto: ", PUERTO, " ..."
@@ -21,7 +42,7 @@ socket_servidor.bind((IP, PUERTO))
 
 # Escuchar conexiones entrantes con el metodo listen,
 # El parametro indica el numero de conexiones entrantes que vamos a aceptar
-socket_servidor.listen(1)
+socket_servidor.listen(3)
 
 print ("Servicio configurado.\n")
 
@@ -30,8 +51,12 @@ try:
         print ("Esperando conexión de un cliente ...")
         # Instanciar objeto socket_cliente para recibir datos,
         # direccion_cliente recibe la tupla de conexion: IP y puerto
+
         socket_cliente, direccion_cliente = socket_servidor.accept()
-        print "Cliente conectado desde: ", direccion_cliente
+        print "Cliente conectado desde: ",direccion_cliente
+
+        socket_cliente, direccion_cliente = socket_servidor.accept()
+        print "Cliente conectado desde: ",direccion_cliente
 
         while True:
             try:
@@ -45,6 +70,7 @@ try:
                     break
                 respuesta_servidor = str(direccion_cliente[0]) + " envio: " + recibido
                 socket_cliente.send(respuesta_servidor.encode("utf-8"))
+                socket_servidor
             except socket.error:
                 print ("Conexion terminada abruptamente por el cliente.")
                 print ("Cerrando conexion con el cliente ...")
@@ -64,4 +90,3 @@ except KeyboardInterrupt:
     print ("Cerrando el servicio ...")
     socket_servidor.close()
     print ("Servicio cerrado, Adios!")
-#DSfsdfsdfsd
