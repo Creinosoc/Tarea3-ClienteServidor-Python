@@ -1,30 +1,23 @@
 import time
-nombre = input ("¿Como te llamas?")
+nombre = input ("¿Como te llamas?"'\n')
 print(" ")
-print ("Hola, "+nombre,"Es hora de jugar al ahorcado")
+print ("Hola, "+nombre,"Es hora de jugar al ahorcado AoE 2"'\n')
 print(" ")
 time.sleep(1)
-print("Comienza a adivinar")
+print("Comienza a adivinar"'\n')
 print(" ")
 time.sleep(0.5)
 palabra ='chile'
-palabra1 ='makako'
-palabra2 ='kkkkk'
-palabra3 ='pip'
-palabra4 ='sacerdotes'
-palabra5 ='titanes'
-palabra6 ='olimpicos'
-palabra7 ='caballeros'
-palabra8 ='faraones'
-palabra9 ='defensores'
-palabra10 ='faeries'
-lista =['chile','makako','kkkkk','pip','sacerdotes','titanes']
+
+lista =lista =['bizantinos','celtas','chinos','francos','godos','ingleses','japoneses','mongoles','turcos','vikingos']
+
 
 tupalabra= ''
 vidas= 5
 
 while vidas > 0:
-    
+
+
     fallas = 0
     for letra in palabra:
         if letra in tupalabra:
@@ -35,18 +28,18 @@ while vidas > 0:
 
     if fallas == 0:
         print("")
-        print("Felicicades, ganaste")
+        print("Felicicades, ganaste"'\n')
         break
-    
-    tuletra=input("Introduce una letra: ")
+
+    tuletra=input('\n'"Introduce una letra: "'\n')
     tupalabra+=tuletra
 
     if tuletra not in palabra:
         vidas-=1
-        print("Equivocacion")
+        print("Equivocacion"'\n')
         print("Tu tienes", +vidas, "vidas")
 
     if vidas == 0:
-        print("Perdiste!")
+        print("Perdiste!"'\n')
 else:
-    print("Gracias por participar")
+    print("Gracias por participar"'\n')
