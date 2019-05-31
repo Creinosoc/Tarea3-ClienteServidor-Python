@@ -7,6 +7,7 @@
 import random #<-------------para generar numeros al azar hasta donde se yo
 import os  #<----- para ejercutar comandos de la consola shell, y para otras cosas mas que desconosco
 import time #<-------------para detener el programa por tiempos determinados
+import sys
 #-------------------------------------------------------------------------------
  
 #-Tableros
@@ -19,7 +20,7 @@ tablero_bot=[[" "," "," ","1","2","3","4","5"],[" ","-------------"],[" ","A","|
 #Funcion #1 Impresor de tablero (el que lo organiza):
 def print_tablero(puta_mierda):
   for fila in puta_mierda:
-    print (" ").join(fila) #la funcion join()  nos permite eliminar las " , " de las listas.
+    print (" ".join(fila)) #la funcion join()  nos permite eliminar las " , " de las listas.
  
  
  
@@ -49,34 +50,34 @@ def coordenadas_barco(y):
                 if y[0]=="a":
                     coordenada.append(2)
                     coordenada.append(int(y[1])+2)
-                    coordenada.append("fuck yeah") #el "fuck yeah" se envia para como mensaje para decir "que las coordenadas estan bien"
+                    coordenada.append("Muy bien") #el "Muy bien" se envia para como mensaje para decir "que las coordenadas estan bien"
  
                 elif y[0]=="b":
                     coordenada.append(3)
                     coordenada.append(int(y[1])+2)
-                    coordenada.append("fuck yeah")
+                    coordenada.append("Muy bien")
                 elif y[0]=="c":
                     coordenada.append(4)
                     coordenada.append(int(y[1])+2)
-                    coordenada.append("fuck yeah")
+                    coordenada.append("Muy bien")
                 elif y[0]=="d":
                     coordenada.append(5)
                     coordenada.append(int(y[1])+2)
-                    coordenada.append("fuck yeah")
+                    coordenada.append("Muy bien")
                 else:
                     coordenada.append(6)
                     coordenada.append(int(y[1])+2)
-                    coordenada.append("fuck yeah")
+                    coordenada.append("Muy bien")
                 return coordenada
             else:
-                coordenada=[None,None,"fuck you"] #el "fuck you" significa que hay un error en la coordenada
+                coordenada=[None,None,"Muy bien"] #el "Muy bien" significa que hay un error en la coordenada
                 return coordenada
  
         else:
-            coordenada=[None,None,"fuck you"]
+            coordenada=[None,None,"Muy bien"]
             return coordenada
     else:
-        coordenada=[None,None,"fuck you"]
+        coordenada=[None,None,"Muy bien"]
         return coordenada
  
  
@@ -87,9 +88,9 @@ def posicion_jugador():  #aqui insertamos la coordenada "a1,a2 etc" que se envia
     while True:
         print ("\n")
         print ("-Ingrese la coordenada donde quiere ocultar su barco")
-        coordenada_jugador= raw_input("--->: ")
+        coordenada_jugador= input("--->: ")
         coordenada_jugador=coordenadas_barco(coordenada_jugador) #<----- ahi esta la funcion de arriba
-        if coordenada_jugador[2]=="fuck yeah":
+        if coordenada_jugador[2]=="Muy bien":
             return coordenada_jugador
             break
         else:
@@ -108,9 +109,9 @@ def posicion_jugador2():
     while True:
         print ("\n")
         print ("-Ingrese la coordenada donde quiere ocultar su barco")
-        coordenada_jugador2= raw_input("--->: ")
+        coordenada_jugador2= input("--->: ")
         coordenada_jugador2=coordenadas_barco(coordenada_jugador2)
-        if coordenada_jugador2[2]=="fuck yeah":
+        if coordenada_jugador2[2]=="Muy bien":
             return coordenada_jugador2
             break
         else:
@@ -130,14 +131,14 @@ def ataque_jugador():
     while True:
         print ("\n")
         print ("Ingrese la coordenada del lugar a donde desea disparar sus ca¤ones")
-        coordenada_jugador= raw_input("--->: ")
+        coordenada_jugador= input("--->: ")
         coordenada_jugador=coordenadas_barco(coordenada_jugador)
-        if coordenada_jugador[2]=="fuck yeah":
+        if coordenada_jugador[2]=="Muy bien":
             return coordenada_jugador
             break
         else:
             print(" ")
-            print ("Bot_Ayuda: Error, ingrese una puta coordenada valida porfavor!, no te cuesta nada\n")
+            print ("Bot_Ayuda: Error, ingrese una coordenada valida porfavor!, no te cuesta nada\n")
  
 #coordenada_jugador=ataque_jugador()
 #jugador_fila=coordenada_jugador[0]
@@ -158,12 +159,12 @@ def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
         print ("-               Has ganado                      -")
         print ("-------------------------------------------------")
         print (" ")
-        rrrr= raw_input("Precione ENTER para volver al men£ principal")
+        rrrr= input("Precione ENTER para volver al men£ principal")
         mierda=1
         return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero[jugador_fila][jugador_col] =="X":
-        print ("\nBot_Enemigo: Acaso est s ciego o que? Ya dijiste esa, pierdes el turno por elevado :)\n")
+        print ("\nBot_Enemigo: Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
     else:
         tablero[jugador_fila][jugador_col]="X"
         print("\nBot_Enemigo: Fallaste :9 \n")
@@ -183,7 +184,7 @@ def mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tabl
         print (" ")
         print (" ")
         print_tablero(tablero)
-        print ("\n---->  Felicidades, te has cargado a tu oponente!\n")
+        print ("\n---->  Felicidades, has ganado !\n")
         print ("-----------------------------------------------------")
         print ("-            Jugador1 Gana la partida               -")
         print ("-----------------------------------------------------\n")
@@ -192,11 +193,11 @@ def mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tabl
         return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero[jugador_fila][jugador_col] =="X":
-        print ("\n Acaso est s ciego o que? Ya dijiste esa, pierdes el turno por elevado :)\n")
+        print ("\n Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
     else:
         print ("\nFallaste  \n")
         tablero[jugador_fila][jugador_col]="X"
-        raw_input("Precione ENTER para continuar")
+        input("Precione ENTER para continuar")
  
 #ganador=mierda1()
  
@@ -209,14 +210,14 @@ def ataque_jugador2():
     while True:
         print ("\n")
         print ("-Ingrese la coordenada del lugar a donde quiera disparar sus ca¤ones")
-        coordenada_jugador2= raw_input("--->: ")
+        coordenada_jugador2= input("--->: ")
         coordenada_jugador2=coordenadas_barco(coordenada_jugador2)
-        if coordenada_jugador2[2]=="fuck yeah":
+        if coordenada_jugador2[2]=="Muy bien":
             return coordenada_jugador2
             break
         else:
             print(" ")
-            print ("\n--> Error, ingrese una puta coordenada valida porfavor!, no te cuesta nada\n")
+            print ("\n--> Error, ingrese una coordenada valida porfavor!, no te cuesta nada\n")
  
 #coordenada_jugador2=ataque_jugador2()
 #jugador_fila2=coordenada_jugador2[0]
@@ -235,7 +236,7 @@ def mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tabl
         print (" ")
         print (" ")
         print_tablero(tablero_bot)
-        print ("\n----> Felicidades, te has follado a  tu enemigo. \n")
+        print ("\n----> Felicidades, has ganado. \n")
         print ("-----------------------------------------------------")
         print ("-            Jugador1 Gana la partida               -")
         print ("-----------------------------------------------------")
@@ -243,11 +244,11 @@ def mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tabl
         return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero_bot[jugador_fila2][jugador_col2] =="X":
-        print ("\n ---> Acaso est s ciego o que? Ya dijiste esa, pierdes el turno por elevado :)\n")
+        print ("\n ---> Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
     else:
         print ("\nFallaste  \n")
         tablero_bot[jugador_fila2][jugador_col2]="X"
-        raw_input("Precione ENTER para continuar")
+        input("Precione ENTER para continuar")
  
  
 #ganador=mierda1()
@@ -285,16 +286,16 @@ def mierda_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot): #esto hace 
         os.system("cls")
         print (" ")
         print_tablero(tablero_bot)
-        print ("\nBot: Me acabo de follar a tu barco jaja.\n\n ")
+        print ("\nBot: Acabo de undir tu varco de papel jaja.\n\n ")
         print ("---------------------------------------")
         print ("-             Has Perdido             -")
         print ("---------------------------------------")
-        rrrr= raw_input("\n\nPrecione ENTER para volver al men£ principal")
+        rrrr= input("\n\nPrecione ENTER para volver al men£ principal")
         mierda=1
         return mierda
     else:
         tablero_bot[fila_ataque_bot][columna_ataque_de_bot]="X"
-        palabra= ["\nBot_Enemigo: Mierda!, he fallado! \n\n","\nBot_Enemigo: Joder, no te di :( \n\n","\nBot_Enemigo: Me cago en la puta! he fallado! \n\n", "\nBot_Enemigo: He fallado, joder :(\n\n","\nBot_Enemigo: puta Bida, He fallado :(\n\n","\nBot_Enemigo: no te di :(\n\n"]
+        palabra= ["\nBot_Enemigo: Rayos!, he fallado! \n\n","\nBot_Enemigo: Rayos, no te di :( \n\n","\nBot_Enemigo: Que porqueria! he fallado! \n\n", "\nBot_Enemigo: He fallado, rayos :(\n\n","\nBot_Enemigo: Maldicion, He fallado :(\n\n","\nBot_Enemigo: no te di :(\n\n"]
         botsays= random.randint(0,5)  #<--- hay algunos mensajes que se imprimen al azar cuando el bot falla el disparo
         palabra1=palabra[botsays]
         print (" ")
@@ -317,9 +318,9 @@ def posicion_bot1():
     while True:
         print ("\n")
         print ("-Ingrese la coordenada donde quiere ocultar el barco del primer bot")
-        coordenada_bot1= raw_input("--->: ")
+        coordenada_bot1= input("--->: ")
         coordenada_bot1=coordenadas_barco(coordenada_bot1)
-        if coordenada_bot1[2]=="fuck yeah":
+        if coordenada_bot1[2]=="Muy bien":
             return coordenada_bot1
             break
         else:
@@ -341,9 +342,9 @@ def posicion_bot2():
     while True:
         print ("\n")
         print ("Ingrese la coordenada donde quiere ocultar el barco del segundo bot bot")
-        coordenada_bot2= raw_input("--->: ")
+        coordenada_bot2= input("--->: ")
         coordenada_bot2=coordenadas_barco(coordenada_bot2)
-        if coordenada_bot2[2]=="fuck yeah":
+        if coordenada_bot2[2]=="Muy bien":
             return coordenada_bot2
             break
         else:
@@ -451,12 +452,12 @@ def jugadorVSbot(tablero,tablero_bot):
         if ganador==1:
             mierda1=1
             return mierda1
-            raw_input("Precione ENTER para volver al men£ principal")
+            input("Precione ENTER para volver al men£ principal")
             print (" ")
             break
  
         else:
-            raw_input("Precione ENTER para continuar")
+            input("Precione ENTER para continuar")
         os.system("cls")
         print ("\n------------Turno de tu enemigo---------------\n")
  
@@ -464,10 +465,10 @@ def jugadorVSbot(tablero,tablero_bot):
         if ganador2==1:
             mierda1=1
             return mierda1
-            raw_input("Precione ENTER para volver al men£ principal")
+            input("Precione ENTER para volver al men£ principal")
             break
         else:
-            raw_input("Precione ENTER para continuar\n")
+            input("Precione ENTER para continuar\n")
  
  
  
@@ -500,7 +501,7 @@ def JugadorVsJugador(tablero,tablero_bot):
         jugador_col=coordenada_jugador[1]
         ganador=mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tablero)
         if ganador ==1:
-            raw_input("Precione ENTER para volver al men£ principal")
+            input("Precione ENTER para volver al men£ principal")
             break
  
         os.system("cls")
@@ -511,7 +512,7 @@ def JugadorVsJugador(tablero,tablero_bot):
         jugador_col2=coordenada_jugador2[1]
         ganador2=mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tablero_bot)
         if ganador2==1:
-            raw_input("Precione ENTER para volver al men£ principal")
+            input("Precione ENTER para volver al men£ principal")
             break
  
  
@@ -520,14 +521,14 @@ def JugadorVsJugador(tablero,tablero_bot):
 def botVSbot(tablero,tablero_bot):
     print ("\n------------Elija un modo, Escriba 1 o 2----------\n")
     while True:
-        print " 1-Manual (usted elije la ubicacion de los bots)"
-        print " 2-Automatico (Los Bots elijen una ubicacion a su antojo)"
-        shit=raw_input("------->: ")
+        print (" 1-Manual (usted elije la ubicacion de los bots)")
+        print (" 2-Automatico (Los Bots elijen una ubicacion a su antojo)")
+        shit=input("------->: ")
         if shit =="1":
             os.system("cls")
  
             #bot1
-            print " "
+            print (" ")
             print_tablero(tablero)
             coordenada_bot1=posicion_bot1()
             bot1_fila_lugar=coordenada_bot1[0]
@@ -536,14 +537,14 @@ def botVSbot(tablero,tablero_bot):
             coordenada_bot2=posicion_bot2()
             bot2_fila_lugar=coordenada_bot2[0]
             bot2_col_lugar=coordenada_bot2[1]
-            print "\nEl juego comienza en: \n"
+            print ("\nEl juego comienza en: \n")
  
             time.sleep(1)
-            print "------>: 3\n"
+            print ("------>: 3\n")
             time.sleep(1)
-            print"------>: 2\n"
+            print("------>: 2\n")
             time.sleep(1)
-            print "------>: 1\n"
+            print ("------>: 1\n")
             time.sleep(1)
             break
  
@@ -552,7 +553,7 @@ def botVSbot(tablero,tablero_bot):
  
         elif shit=="2":
             os.system("cls")
-            print " "
+            print (" ")
  
             #bot1
             bot1_fila_lugar = fila_aleatoria(tablero)
@@ -560,34 +561,34 @@ def botVSbot(tablero,tablero_bot):
             #bot2
             bot2_fila_lugar = fila_aleatoria(tablero)
             bot2_col_lugar = columna_aleatoria(tablero)
-            print "\nEl juego comienza en: \n"
+            print ("\nEl juego comienza en: \n")
  
             time.sleep(1)
-            print "------>: 3\n"
+            print ("------>: 3\n")
             time.sleep(1)
-            print"------>: 2\n"
+            print("------>: 2\n")
             time.sleep(1)
-            print "------>: 1\n"
+            print ("------>: 1\n")
             time.sleep(1)
             break
         else:
-            print "\n-->Elija una obcion valida<----\n"
+            print ("\n-->Elija una obcion valida<----\n")
  
     while True:
  
  
-        print "\n--------Turno Bot_1--------------\n"
+        print ("\n--------Turno Bot_1--------------\n")
         ganador1=mierda_de_bot1(bot2_fila_lugar,bot2_col_lugar,tablero_bot)
         if ganador1==1:
-            raw_input("Precione ENTER para volver al men£ principal\n")
-            print " \n."
+            input("Precione ENTER para volver al men£ principal\n")
+            print (" \n.")
  
             break
-        print "\n--------Turno Bot_2--------------\n"
+        print ("\n--------Turno Bot_2--------------\n")
         ganador2=mierda_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero)
         if ganador2==1:
-            raw_input("Precione ENTER para volver al men£ principal\n")
-            print " \n."
+            input("Precione ENTER para volver al men£ principal\n")
+            print (" \n.")
  
             break
  
@@ -603,9 +604,9 @@ def botVSbot(tablero,tablero_bot):
  
 def main():
     os.system("color 2")
-    print "----------------------------------------------------"
-    print "-             Bienvenid@ a batalla naval           -"
-    print "----------------------------------------------------"
+    print ("----------------------------------------------------")
+    print ("-             Bienvenid@ a batalla naval           -")
+    print ("----------------------------------------------------")
  
     time.sleep(1)
     while True:
@@ -613,14 +614,14 @@ def main():
         tablero_bot=[[" "," "," ","1","2","3","4","5"],[" ","-------------"],[" ","A","|",'O', 'O', 'O', 'O', 'O'], [" ","B","|",'O', 'O', 'O', 'O', 'O'], [" ","C","|",'O', 'O', 'O', 'O', 'O'], [" ","D","|",'O', 'O', 'O', 'O', 'O'], [" ","E","|",'O', 'O', 'O', 'O', 'O']]
  
  
-        print "\n------------------Menu Principal-----------------------------------------\n"
-        print "Selecione el modo de juego (Escriba 1,2,3... segun lo que se le antoje)"
-        print " "
-        print " "
-        print " 1-Single player."
-        print " 2-Multiplayer (Sin revisar, puede contener errores)."
-        print " 3-Bot Vs Bot \n"
-        selecciion1=raw_input("------->: ")
+        print ("\n------------------Menu Principal-----------------------------------------\n")
+        print ("Selecione el modo de juego (Escriba 1,2,3... segun lo que se le antoje)")
+        print (" ")
+        print (" ")
+        print (" 1-Single player.")
+        print (" 2-Multiplayer (Sin revisar, puede contener errores).")
+        print (" 3-Bot Vs Bot \n")
+        selecciion1=input("------->: ")
         if selecciion1=="1":
             os.system("cls")
             jugadorVSbot(tablero,tablero_bot)
@@ -633,7 +634,7 @@ def main():
             botVSbot(tablero,tablero_bot)
  
         else:
-            print "\n ---->>Ingrese una obcion valida<<---"
+            print ("\n ---->>Ingrese una obcion valida<<---")
             time.sleep(1.5)
         os.system("cls")
  
