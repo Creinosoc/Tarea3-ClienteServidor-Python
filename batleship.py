@@ -16,7 +16,8 @@ tablero_bot=[[" "," "," ","1","2","3","4","5"],[" ","-------------"],[" ","A","|
  
 #------------------------------------------------------------------------------------------
 #-funciones basicas del juego
- 
+
+
 #Funcion #1 Impresor de tablero (el que lo organiza):
 def print_tablero(puta_mierda):
   for fila in puta_mierda:
@@ -154,7 +155,7 @@ def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
         os.system("cls")
         print (" ")
         print_tablero(tablero)
-        print ("\nBot_Enemigo: felicidades hundiste mi #### barco\n")
+        print ("\nBot_Enemigo: felicidades hundiste mi %$#&%$/# barco\n")
         print ("-------------------------------------------------")
         print ("-               Has ganado                      -")
         print ("-------------------------------------------------")
@@ -167,7 +168,7 @@ def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
         print ("\nBot_Enemigo: Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
     else:
         tablero[jugador_fila][jugador_col]="X"
-        print("\nBot_Enemigo: Fallaste :9 \n")
+        print("\nBot_Enemigo: Fallaste : Que mala punteria tienes, mejor vete a tu casa a llorar  \n")
  
 #ganador=mierda()
  
