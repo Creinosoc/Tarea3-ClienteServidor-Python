@@ -1,4 +1,5 @@
 import time
+import random
 nombre = input ("¿Como te llamas?"'\n')
 print(" ")
 print ("Hola, "+nombre,"Es hora de jugar al ahorcado AoE 2"'\n')
@@ -7,9 +8,15 @@ time.sleep(1)
 print("Comienza a adivinar"'\n')
 print(" ")
 time.sleep(0.5)
-palabra ='chile'
 
-lista =lista =['bizantinos','celtas','chinos','francos','godos','ingleses','japoneses','mongoles','turcos','vikingos']
+lista =['bizantinos','celtas','chinos','francos','godos','ingleses','japoneses','mongoles','turcos','vikingos']
+
+civilizacion = random.randint(0, len(lista))
+
+for i in [0,civilizacion]:
+    if i== civilizacion:
+        palabra = lista[i]
+        #print("la civilizacione es",lista[i])
 
 
 tupalabra= ''
