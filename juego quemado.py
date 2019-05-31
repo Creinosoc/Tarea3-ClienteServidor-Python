@@ -1,13 +1,22 @@
 import time
 import random
-nombre = input ("¿Como te llamas?"'\n')
-print(" ")
-print ("Hola, "+nombre,"Es hora de jugar al ahorcado AoE 2"'\n')
-print(" ")
+
+print(" _____________________________________________")
+print("|_____________________________________________|")
+print("|   Bienvenido al juego del quemado :) !!!    |")
+print("|_____________________________________________|")
+
+print(">> Adivina la palabra antes de morir quemado wajaja!")
+time.sleep(2)
+print(">> Te daré una pista: civilizaciones del famoso Age of Empire II")
+time.sleep(3)
+print("---------------------------------")
+print(">> Empecemos...")
+nombre = input (">> ¿Como te llamas?"'\n')
+print (">> Hola, "+nombre,"empieza probando una letra a la vez...")
+time.sleep(2)
+print(">> Adivina la palabra!!!"'\n')
 time.sleep(1)
-print("Comienza a adivinar"'\n')
-print(" ")
-time.sleep(0.5)
 
 lista =['bizantinos','celtas','chinos','francos','godos','ingleses','japoneses','mongoles','turcos','vikingos']
 
@@ -18,19 +27,17 @@ for i in [0,civilizacion]:
         palabra = lista[i]
         #print("la civilizacione es",lista[i])
 
-
 tupalabra= ''
 vidas= 5
 
 while vidas > 0:
-
 
     fallas = 0
     for letra in palabra:
         if letra in tupalabra:
             print(letra,end="")
         else:
-            print("*", end="")
+            print("-", end="")
             fallas+=1
 
     if fallas == 0:

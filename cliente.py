@@ -32,7 +32,7 @@ print("Connected...\n")
 soc.send(name.encode())
 server_name = soc.recv(2048)
 server_name = server_name.decode()
-print('{} has joined...'.format(server_name))
+print('{} a entrado...'.format(server_name))
 print('Escriba <<terminar()>> para salir de la sala')
 print('Espere la respuesta del servidor...')
 
