@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# Programa Servidor
-
-import socket
-import sys
+import time, socket, sys
 import random
 
 #-------------------------------------------------------
@@ -15,78 +10,61 @@ intentos = 3
 def dado(dado,n_intentos):
     suma = 0
     for i in range(0, n_intentos):
-        print "Tiro el dado ",i+1," veces"
+        print ("Tiro el dado ",i+1," veces")
         dado.append(random.randint(1,caras))
-        print "Dado 1 = ", dado
+        print ("Dado 1 = ", dado)
         suma = suma + dado[i]
 
-    print "Total = ",suma
+    print ("Total = ",suma)
 
 
-dado(dado1,intentos)
+# dado(dado1,intentos)
 #-------------------------------------------------------
 
-if len(sys.argv) != 2:
-    print "Agregar el puerto donde se va a ofrecer el servicio."
-    sys.exit(0)
+def saludo():
+    # s1 = input(f"Dígame su apellido, {nombre}: ")
+    # print('_________________________')
+    print('Bienvenido al servidor!!!')
+    # print('_________________________')
 
-IP = "192.168.122.89"
-PUERTO = int(sys.argv[1])
+#-------------------------------------------------------
 
-print "\nServicio se va a configurar en el puerto: ", PUERTO, " ..."
+print('Configurando Servidor...')
+time.sleep(3)
+#Get the hostname, IP Address from socket and set Port
 
-socket_servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+soc = socket.socket()
+host_name = "Sr servidor"
+IP = "localhost"
+# IP = socket.gethostbyname(host_name)
+PUERTO = 9090
+soc.bind((IP, PUERTO))
+print(host_name, '(IP = {})'.format(IP))
+# name = input('Enter name: ')
+name = "Sr Servidor"
+soc.listen(1) #Try to locate using socket
+print('Esperando conexiones...')
+connection, addr = soc.accept()
+print("Received connection from ", addr[0], "(", addr[1], ")\n")
+print('Conexion establecida. conectado desde: {}, ({})'.format(addr[0], addr[0]))
+#get a connection from client side
+client_name = connection.recv(2048)
+client_name = client_name.decode()
+print(client_name + ' El cliente se a conectado.')
+print('Escriba <<terminar()>> para salir de la sala')
+connection.send(name.encode())
 
-# Enlace del socket con la IP y el puerto
-socket_servidor.bind((IP, PUERTO))
+saludo1 = print('wena lo chicabros')
 
-# Escuchar conexiones entrantes con el metodo listen,
-# El parametro indica el numero de conexiones entrantes que vamos a aceptar
-socket_servidor.listen(3)
-
-print ("Servicio configurado.\n")
-
-try:
-    while True:
-        print ("Esperando conexión de un cliente ...")
-        # Instanciar objeto socket_cliente para recibir datos,
-        # direccion_cliente recibe la tupla de conexion: IP y puerto
-
-        socket_cliente, direccion_cliente = socket_servidor.accept()
-        print "Cliente conectado desde: ",direccion_cliente
-
-        socket_cliente, direccion_cliente = socket_servidor.accept()
-        print "Cliente conectado desde: ",direccion_cliente
-
-        while True:
-            try:
-                recibido = socket_cliente.recv(1024)
-                print str(direccion_cliente[0]) + " >> ", recibido
-                if recibido == "finalizar()":
-                    print ("Cliente finalizo la conexion.")
-                    print ("Cerrando la conexion con el cliente ...")
-                    socket_cliente.close()
-                    print ("Conexion con el cliente cerrado.")
-                    break
-                respuesta_servidor = str(direccion_cliente[0]) + " envio: " + recibido
-                socket_cliente.send(respuesta_servidor.encode("utf-8"))
-                socket_servidor
-            except socket.error:
-                print ("Conexion terminada abruptamente por el cliente.")
-                print ("Cerrando conexion con el cliente ...")
-                socket_cliente.close()
-                print ("Conexion con el cliente cerrado.")
-                break
-            except KeyboardInterrupt:
-                print ("\n∫Se interrunpio el cliente con un Control_C.")
-                print ("Cerrando conexion con el cliente ...")
-                socket_cliente.close()
-                print ("Conexion con el cliente cerrado.")
-                break
-
-except KeyboardInterrupt:
-    print ("\nSe interrumpio el servidor con un Control_C.")
-    #socket_cliente.close()
-    print ("Cerrando el servicio ...")
-    socket_servidor.close()
-    print ("Servicio cerrado, Adios!")
+while True:
+   message = input('Yo >> ')
+   # message = input(dado(dado1,intentos))
+   if message == 'terminar()':
+      message = 'Good Night...'
+      connection.send(message.encode())
+      print("\n")
+      break
+   connection.send(message.encode())
+   message = connection.recv(2048)
+   message = message.decode()
+   print(client_name, '>', message)

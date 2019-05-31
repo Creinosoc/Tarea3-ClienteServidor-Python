@@ -1,43 +1,49 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# Programa Cliente
+import time, socket, sys
 
-import socket
-import sys
+#-------------------------------------------------------
 
-if len(sys.argv) != 3:
-    print "Agregar la IP kkdel servidor y el puerto donde se ofrece el servicio."
-    sys.exit(0)
+def saludo():
+    # s1 = input(f"Dígame su apellido, {nombre}: ")
+    # print('_________________________')
+    print('Bienvenido al servidor!!!')
+    # print('_________________________')
 
-IP = sys.argv[1]
-PUERTO = int(sys.argv[2])
+#-------------------------------------------------------
 
-print "\nConectandose al servidor ", IP, " en el puerto ", PUERTO, " ..."
+#-------------------------------------------------------
 
-try:
-    socket_cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket_cliente.connect((IP, PUERTO))
-except:
-    print ("No se puede conectar con el servidor.")
-    sys.exit(0)
+print('Client Server...')
+time.sleep(1)
+#Get the hostname, IP Address from socket and set Port
+soc = socket.socket()
+shost = socket.gethostname()
+ip = socket.gethostbyname(shost)
+#get information to connect with the server
+print(shost, '({})'.format(ip))
+server_host = input('Enter server\'s IP address:')
+name = input('Enter Client\'s name: ')
+PUERTO = 9090
 
-print "\nConectado, escriba finalizar() para terminar la conección.\n"
+print("\nTrying to connect to ", server_host, "(", PUERTO, ")\n")
+# print('Trying to connect to the server: {}, ({})'.format(server_host, port))
+time.sleep(1)
+soc.connect((server_host, PUERTO))
+print("Connected...\n")
+soc.send(name.encode())
+server_name = soc.recv(2048)
+server_name = server_name.decode()
+print('{} has joined...'.format(server_name))
+print('Escriba <<terminar()>> para salir de la sala')
+print('Espere la respuesta del servidor...')
 
-try:
-    while True:
-        mensaje = str(raw_input("Yo >> "))
-        socket_cliente.send(mensaje.encode("utf-8"))
-        if mensaje == "finalizar()":
-            break
-        recibido = socket_cliente.recv(1024)
-        print "Servidor >> " + recibido
-
-except socket.error:
-    print ("Se perdio la conexion con el servidor.")
-except KeyboardInterrupt:
-    print ("\nSe interrunpio el cliente con un Control_C.")
-
-finally:
-    print ("Terminando conexion con el servidor ...")
-    socket_cliente.close()
-    print ("Conexion con el servidor terminado.")
+while True:
+   message = soc.recv(2048)
+   message = message.decode()
+   print(server_name, ">", message)
+   message = input(str("Me > "))
+   if message == 'terminar()':
+      message = "Leaving the Chat room"
+      soc.send(message.encode())
+      print("\n")
+      break
+   soc.send(message.encode())
