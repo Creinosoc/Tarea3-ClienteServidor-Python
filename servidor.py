@@ -24,6 +24,8 @@ def dado_calcular(dado,intentos):
 		sum=sum+dado[i]
 	return sum
 
+def dado_clear(arg):
+	pass
 
 # dado(dado1,intentos)
 #-------------------------------------------------------
@@ -56,7 +58,6 @@ connection.send(name.encode())
 # saludo1 = print('wena lo chicabros')
 
 while True:
-
     mensaje = 'Bienvenido'
     # message = input(dado(dado1,intentos))
     if mensaje == 'salir()':
@@ -72,14 +73,31 @@ while True:
         print("Cliente -",client_name,">>",mensaje)
 
         if mensaje == '1':
+            dado1 = []
+            j2 = dado_calcular(dado1,intentos)
             mensaje = '--Juegos de dados--\n>> Lanzaras 3 veces un dado de 6 caras, aquel que saque el mayor gana\nPRECIONE UNA TECLA PARA CONTINUAR'
             connection.send(mensaje.encode())
             mensaje = connection.recv(2048)
             mensaje = mensaje.decode()
             print("Cliente -",client_name,">>",mensaje)
-			j2 = dado_calcular(dado1,intentos)
 
-			if mensaje > j2 :
-				mensaje = "Gano el Jugador 1 con {}".format(j1)
-			else:
-				mensaje = "Gano el cliente con {}".format(mensaje)
+
+			# print("Cliente -",client_name,">>",mensaje)
+
+            mensaje = connection.recv(2048)
+            mensaje = mensaje.decode()
+            mensaje = int(mensaje)#"{}".format(mensaje)
+            print("Cliente -",client_name,">>",mensaje)
+            print("Servidor -",j2)
+            if mensaje > j2 :
+                mensaje = "Gano el Cliente con {}".format(mensaje)
+                connection.send(mensaje.encode())
+                mensaje = connection.recv(2048)
+                mensaje = mensaje.decode()
+                print("Cliente -",client_name,">>",mensaje)
+            else:
+                mensaje = "Gano el Servidor con {}\n Escriba Bienvenido".format(j2)
+                connection.send(mensaje.encode())
+                mensaje = connection.recv(2048)
+                mensaje = mensaje.decode()
+                print("Cliente -",client_name,">>",mensaje)
