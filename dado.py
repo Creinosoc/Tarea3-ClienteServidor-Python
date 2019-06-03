@@ -14,6 +14,7 @@ def dado_imprimir(dado,intentos):
 		sum=sum+dado[i]
 		print("dado 1 = ",dado)
 	print("la suma de sus tiradas es = ",sum)
+	return sum
 
 def dado_calcular(dado,intentos):
 	sum=0
@@ -27,8 +28,8 @@ print("intentos jugador 1")
 j1 = dado_calcular(dado1,intentos)
 print("-----------------------------------")
 print("intentos jugador 2")
-# dado_imprimir(dado2,intentos)
-j2 = dado_calcular(dado2,intentos)
+j2 = dado_imprimir(dado2,intentos)
+# j2 = dado_calcular(dado2,intentos)
 print(" ")
 print("-----------------------------------")
 print ("Jugador 1 saco un total de : ", j1)
