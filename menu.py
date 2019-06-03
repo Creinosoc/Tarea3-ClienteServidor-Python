@@ -2,46 +2,22 @@ import os
 import random
 import time
  
-
 def menu():
-
-	# Función que limpia la pantalla y muestra nuevamente el menu
-
 	os.system('clear') # NOTA para windows tienes que cambiar clear por cls
-
 	print ("Selecciona una opción")
-
-	print ("\t1 Dice War!!!")
-
+	print ("\t1 Dice War!!!")	
 	print ("\t2 - colgado")
-
 	print ("\t3 - tercera opción")
-
 	print ("\t9 - salir")
-
- 
-
- 
-
 while True:
-
-	# Mostramos el menu
-
 	menu()
 
- 
-
-	# solicituamos una opción al usuario
-
-	opcionMenu = input("inserta un numero valor >> ")
-
- 
+	opcionMenu = input() #Dice War
 
 	if opcionMenu=="1":
-		print ("")
-		
+		print("")
 		caras = 6
- 		dado1 = []
+		dado1 = []
 		dado2 = []
 
 		print("nombre del jugador")
@@ -49,7 +25,6 @@ while True:
 
 		n_intentos = 100
 		print(" se lanzaran  =",n_intentos)
-
 
 		def dado(dado,intentos):
 			sum=0
@@ -61,11 +36,11 @@ while True:
 			print("la suma de sus tiradas es = ",sum)
 			return(sum)
 
-		def win(a,b,nom):
+		def win(a,b,nombre):
 			if a<b:
-			print("el ganador es Servidor con la suma de", b)
+				print("el ganador es Servidor con la suma de",b)
 			else:
-			print("el ganador es ",nombre" con la suma de",a)
+				print("el ganador es ",nombre +" con la suma de",a)
 
 		print("intentos ",nombre)
 		a=dado(dado1,n_intentos)
@@ -75,37 +50,38 @@ while True:
 
 
 	elif opcionMenu=="2":
+		print(" _____________________________________________")
+		print("|_____________________________________________|")
+		print("|   Bienvenido al juego del quemado :) !!!    |")
+		print("|_____________________________________________|")
 
-		print ("")
+		print(">> Adivina la palabra antes de morir quemado wajaja!")
+		time.sleep(2)
+		print(">> Te daré una pista: civilizaciones del famoso Age of Empire II")
+		time.sleep(3)
+		print("---------------------------------")
+		print(">> Empecemos...")
 
-		input("Colgado!")
-
-		nombre = input ("¿Como te llamas?")
+		nombre = input ("¿Como te llamas?"'\n')
 		print(" ")
-		print ("Hola, "+nombre,"Es hora de jugar al ahorcado")
+		print ("Hola, "+nombre,"Es hora de jugar al ahorcado AoE 2"'\n')
 		print(" ")
 		time.sleep(1)
-		print("Comienza a adivinar")
+		print("Comienza a adivinar"'\n')
 		print(" ")
 		time.sleep(0.5)
-		palabra ='chile'
-		palabra1 ='makako'
-		palabra2 ='kkkkk'
-		palabra3 ='pip'
-		palabra4 ='sacerdotes'
-		palabra5 ='titanes'
-		palabra6 ='olimpicos'
-		palabra7 ='caballeros'
-		palabra8 ='faraones'
-		palabra9 ='defensores'
-		palabra10 ='faeries'
-		lista =['chile','makako','kkkkk','pip','sacerdotes','titanes']
 
+		lista =['bizantinos','celtas','chinos','francos','godos','ingleses','japoneses','mongoles','turcos','vikingos']
+
+		civilizacion = random.randint(0, len(lista))
+		for i in [0,civilizacion]:
+			if i== civilizacion:
+				palabra = lista[i]
+		        #print("la civilizacione es",lista[i])
 		tupalabra= ''
 		vidas= 5
 
 		while vidas > 0:
-		    
 		    fallas = 0
 		    for letra in palabra:
 		        if letra in tupalabra:
@@ -113,26 +89,23 @@ while True:
 		        else:
 		            print("*", end="")
 		            fallas+=1
-
 		    if fallas == 0:
 		        print("")
-		        print("Felicicades, ganaste")
+		        print("Felicicades, ganaste"'\n')
 		        break
-		    
-		    tuletra=input("Introduce una letra: ")
+		    tuletra=input('\n'"Introduce una letra: "'\n')
 		    tupalabra+=tuletra
 
 		    if tuletra not in palabra:
 		        vidas-=1
-		print("Equivocacion")
+		        print("Equivocacion"'\n')
 		        print("Tu tienes", +vidas, "vidas")
 
 		    if vidas == 0:
-		        print("Perdiste!")
+		        print("Perdiste!"'\n')
 		else:
-			print("Gracias por participar")
-
-
+			print("Gracias por participar"'\n')
+	
 	elif opcionMenu=="3":
 
 		print ("")
