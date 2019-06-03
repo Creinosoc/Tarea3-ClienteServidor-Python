@@ -5,28 +5,27 @@ import random
 caras = 6
 dado1 = []
 dado2 = []
+
 intentos = 3
 
-def dado(dado,n_intentos):
-    suma = 0
-    for i in range(0, n_intentos):
-        print ("Tiro el dado ",i+1," veces")
-        dado.append(random.randint(1,caras))
-        print ("Dado 1 = ", dado)
-        suma = suma + dado[i]
+def dado_imprimir(dado,intentos):
+	sum=0
+	for i in range(intentos):
+		print("tiro el dado",i+1,"veces")
+		dado.append(random.randint(1,6))
+		sum=sum+dado[i]
+		print("dado 1 = ",dado)
+	print("la suma de sus tiradas es = ",sum)
 
-    print ("Total = ",suma)
+def dado_calcular(dado,intentos):
+	sum=0
+	for i in range(intentos):
+		dado.append(random.randint(1,6))
+		sum=sum+dado[i]
+	return sum
 
 
 # dado(dado1,intentos)
-#-------------------------------------------------------
-
-def saludo():
-    # s1 = input(f"Dígame su apellido, {nombre}: ")
-    # print('_________________________')
-    print('Bienvenido al servidor!!!')
-    # print('_________________________')
-
 #-------------------------------------------------------
 
 print('Configurando Servidor...')
@@ -51,20 +50,36 @@ print('Conexion establecida. conectado desde: {}, ({})'.format(addr[0], addr[0])
 client_name = connection.recv(2048)
 client_name = client_name.decode()
 print(client_name + ' El cliente se a conectado.')
-print('Escriba <<terminar()>> para salir de la sala')
+print('Escriba <<salir()>> para Cerrar el servicio')
 connection.send(name.encode())
 
-saludo1 = print('wena lo chicabros')
+# saludo1 = print('wena lo chicabros')
 
 while True:
-   message = input('Yo >> ')
-   # message = input(dado(dado1,intentos))
-   if message == 'terminar()':
-      message = 'Good Night...'
-      connection.send(message.encode())
-      print("\n")
-      break
-   connection.send(message.encode())
-   message = connection.recv(2048)
-   message = message.decode()
-   print(client_name, '>', message)
+
+    mensaje = 'Bienvenido'
+    # message = input(dado(dado1,intentos))
+    if mensaje == 'salir()':
+        mensaje = 'Good Night...'
+        connection.send(mensaje.encode())
+        print("\n")
+        break
+    if mensaje == 'Bienvenido':
+        mensaje = '--Bienvenido a la sala de juegos--\n1.- Juegos de dados\n2.- ...'
+        connection.send(mensaje.encode())
+        mensaje = connection.recv(1024)
+        mensaje = mensaje.decode()
+        print("Cliente -",client_name,">>",mensaje)
+
+        if mensaje == '1':
+            mensaje = '--Juegos de dados--\n>> Lanzaras 3 veces un dado de 6 caras, aquel que saque el mayor gana\nPRECIONE UNA TECLA PARA CONTINUAR'
+            connection.send(mensaje.encode())
+            mensaje = connection.recv(2048)
+            mensaje = mensaje.decode()
+            print("Cliente -",client_name,">>",mensaje)
+			j2 = dado_calcular(dado1,intentos)
+
+			if mensaje > j2 :
+				mensaje = "Gano el Jugador 1 con {}".format(j1)
+			else:
+				mensaje = "Gano el cliente con {}".format(mensaje)

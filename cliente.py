@@ -1,12 +1,33 @@
 import time, socket, sys
+import random
 
 #-------------------------------------------------------
+caras = 6
+dado1 = []
+dado2 = []
 
-def saludo():
-    # s1 = input(f"Dígame su apellido, {nombre}: ")
-    # print('_________________________')
-    print('Bienvenido al servidor!!!')
-    # print('_________________________')
+intentos = 3
+
+def dado_imprimir(dado,intentos):
+    sum=0
+    for i in range(intentos):
+        print("Intento",i+1,":")
+        dado.append(random.randint(1,6))
+        sum=sum+dado[i]
+        print("dado 1 = ",dado)
+        time.sleep(1)
+
+    print("la suma total es:",sum)
+    time.sleep(2)
+    return sum
+
+
+def dado_calcular(dado,intentos):
+	sum=0
+	for i in range(intentos):
+		dado.append(random.randint(1,6))
+		sum=sum+dado[i]
+	return sum
 
 #-------------------------------------------------------
 
@@ -32,18 +53,27 @@ print("Connected...\n")
 soc.send(name.encode())
 server_name = soc.recv(2048)
 server_name = server_name.decode()
-print('{} has joined...'.format(server_name))
-print('Escriba <<terminar()>> para salir de la sala')
+print('{} a entrado...'.format(server_name))
+print('Escriba <<salir()>> para salir de la sala')
 print('Espere la respuesta del servidor...')
 
 while True:
-   message = soc.recv(2048)
-   message = message.decode()
-   print(server_name, ">", message)
-   message = input(str("Me > "))
-   if message == 'terminar()':
-      message = "Leaving the Chat room"
-      soc.send(message.encode())
-      print("\n")
-      break
-   soc.send(message.encode())
+
+    message = soc.recv(2048)
+    message = message.decode()
+    print(message)  #imprime el mensaje del servidor
+    message = input(str("Yo >> "))
+    if message == 'salir()':
+        message = 'Leaving the Chat room'
+        soc.send(message.encode())
+        # print("\n")
+        break
+    if message == '1':
+        message = '1'
+        soc.send(message.encode())
+        print("\n")
+    if message == '':
+        j1 = dado_imprimir(dado1,intentos)
+        print ("Has sacado saco un total de : ", j1)
+        message = "{}".format(j1)
+    soc.send(message.encode())
