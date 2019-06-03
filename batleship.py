@@ -19,8 +19,8 @@ tablero_bot=[[" "," "," ","1","2","3","4","5"],[" ","-------------"],[" ","A","|
 
 
 #Funcion #1 Impresor de tablero (el que lo organiza):
-def print_tablero(puta_mierda):
-  for fila in puta_mierda:
+def print_tablero(tablero_a):
+  for fila in tablero_a:
     print (" ".join(fila)) #la funcion join()  nos permite eliminar las " , " de las listas.
  
  
@@ -147,9 +147,9 @@ def ataque_jugador():
  
  
  
-#Funcion #7 -------en la funci¢n mierda se analiza que pasa con el el ataque del juugador: si da al blanco, si falla etc
-def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
-    mierda=0
+#Funcion #7 -------en la funci¢n ataque se analiza que pasa con el el ataque del jugador: si da al blanco, si falla etc
+def ataque(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
+    ataque=0
     if barco_fila == jugador_fila and barco_col == jugador_col:
         tablero[jugador_fila][jugador_col]="W"
         os.system("cls")
@@ -161,8 +161,8 @@ def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
         print ("-------------------------------------------------")
         print (" ")
         rrrr= input("Precione ENTER para volver al men£ principal")
-        mierda=1
-        return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
+        ataque=1
+        return ataque #nuestra amiga: ataque se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero[jugador_fila][jugador_col] =="X":
         print ("\nBot_Enemigo: Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
@@ -170,15 +170,15 @@ def mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero):
         tablero[jugador_fila][jugador_col]="X"
         print("\nBot_Enemigo: Fallaste : Que mala punteria tienes, mejor vete a tu casa a llorar  \n")
  
-#ganador=mierda()
+#ganador=ataque()
  
  
  
  
-#Funcion #8 funcion mierda jugador1cuando se juega para dos jugadores playerVsplayer-----------
+#Funcion #8 funcion ataque jugador1cuando se juega para dos jugadores playerVsplayer-----------
  
-def mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tablero):
-    mierda=0
+def ataque1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tablero):
+    ataque=0
     if jugador_fila_lugar2 == jugador_fila and jugador_col_lugar2 == jugador_col:
         tablero[jugador_fila][jugador_col]="W"
         os.system("cls")
@@ -190,8 +190,8 @@ def mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tabl
         print ("-            Jugador1 Gana la partida               -")
         print ("-----------------------------------------------------\n")
         print (" ")
-        mierda=1
-        return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
+        ataque=1
+        return ataque #nuestra amiga: ataque se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero[jugador_fila][jugador_col] =="X":
         print ("\n Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
@@ -200,12 +200,12 @@ def mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tabl
         tablero[jugador_fila][jugador_col]="X"
         input("Precione ENTER para continuar")
  
-#ganador=mierda1()
+#ganador=ataque1()
  
  
  
  
-#Funcion #9 funcion mierda & ataque jugador 2--------
+#Funcion #9 funcion ataque & ataque jugador 2--------
  
 def ataque_jugador2():
     while True:
@@ -225,12 +225,12 @@ def ataque_jugador2():
 #jugador_col2=coordenada_jugador2[1]
  
  
-#Funcion #10 funcion mierda jugador2--------------------
+#Funcion #10 funcion ataque jugador2--------------------
  
  
  
-def mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tablero_bot):
-    mierda=0
+def 2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tablero_bot):
+    =0
     if jugador_fila2 == jugador_fila_lugar and jugador_col_lugar == jugador_col2:
         tablero_bot[jugador_fila2][jugador_col2]="W"
         os.system("cls")
@@ -241,24 +241,24 @@ def mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tabl
         print ("-----------------------------------------------------")
         print ("-            Jugador1 Gana la partida               -")
         print ("-----------------------------------------------------")
-        mierda=1
-        return mierda #nuestra amiga: mierda se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
+        ataque=1
+        return ataque #nuestra amiga: ataque se encarga de llevar en mensaje de que alguien gan¢ la partida para dar fin al juego
  
     elif tablero_bot[jugador_fila2][jugador_col2] =="X":
-        print ("\n ---> Acaso est s ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
+        print ("\n ---> Acaso estas ciego o que? Ya ingresaste esa , pierdes el turno por despistado :)\n")
     else:
         print ("\nFallaste  \n")
         tablero_bot[jugador_fila2][jugador_col2]="X"
         input("Precione ENTER para continuar")
  
  
-#ganador=mierda1()
+#ganador=ataque1()
  
  
  
 #Funcion #11 ataque de bot-------------------------------
  
-#estas funciones generan el ataque aleatorio del bot, aun sobran porque dentro de la funcion mierda_de_bot estan incluidas.
+#estas funciones generan el ataque aleatorio del bot, aun sobran porque dentro de la funcion ataque_de_bot estan incluidas.
  
 def fila_ataque_bot1(tablero_bot):
   return random.randint(2,len(tablero_bot)-1)
@@ -270,7 +270,7 @@ def columna_ataque_de_bot1(tablero_bot):
 #columna_ataque_de_bot=columna_ataque_de_bot1(tablero_bot)
  
 #Funcion #13
-def mierda_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot): #esto hace lo mismo que la funcion mierda, solo que en favor del bot.
+def porqueria_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot): #esto hace lo mismo que la funcion ataque, solo que en favor del bot.
     print (" ")
     print_tablero(tablero_bot)
     time.sleep(1)
@@ -292,8 +292,8 @@ def mierda_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot): #esto hace 
         print ("-             Has Perdido             -")
         print ("---------------------------------------")
         rrrr= input("\n\nPrecione ENTER para volver al men£ principal")
-        mierda=1
-        return mierda
+        ataque=1
+        return ataque
     else:
         tablero_bot[fila_ataque_bot][columna_ataque_de_bot]="X"
         palabra= ["\nBot_Enemigo: Rayos!, he fallado! \n\n","\nBot_Enemigo: Rayos, no te di :( \n\n","\nBot_Enemigo: Que porqueria! he fallado! \n\n", "\nBot_Enemigo: He fallado, rayos :(\n\n","\nBot_Enemigo: Maldicion, He fallado :(\n\n","\nBot_Enemigo: no te di :(\n\n"]
@@ -305,7 +305,7 @@ def mierda_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot): #esto hace 
         time.sleep(1)
  
  
-#ganador2=mierda_de_bot(jugador_fila_lugar,jugador_col_lugar)
+#ganador2=porqueria_de_bot(jugador_fila_lugar,jugador_col_lugar)
  
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
@@ -367,10 +367,10 @@ def posicion_bot2():
  
 #ataque bot1----------------
  
-#supongo que ya saben masomenos para que sirven las funciones mierda xD
+#supongo que ya saben masomenos para que sirven las funciones ataque xD
  
 #Funcion #16
-def mierda_de_bot1(bot2_fila_lugar,bot2_col_lugar, tablero_bot):
+def porqueria_de_bot1(bot2_fila_lugar,bot2_col_lugar, tablero_bot):
     while True:
         fila_ataque_bot1=random.randint(2,len(tablero_bot)-1)
         columna_ataque_de_bot1=random.randint(3,len(tablero_bot[0])-1)
@@ -382,22 +382,22 @@ def mierda_de_bot1(bot2_fila_lugar,bot2_col_lugar, tablero_bot):
         print ("-------------------------------------------")
         print ("-             Bot_1 ha ganado             -")
         print ("-------------------------------------------")
-        mierda=1
-        return mierda
+        ataque=1
+        return ataque
     else:
         tablero_bot[fila_ataque_bot1][columna_ataque_de_bot1]="X"
         print_tablero(tablero_bot)
  
  
  
-#ganador1=mierda_de_bot1(bot2_fila_lugar,bot2_col_lugar)
+#ganador1=porqueria_de_bot1(bot2_fila_lugar,bot2_col_lugar)
  
 #ataque bot2----------------
  
  
 #Funcion #17
  
-def mierda_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero):
+def porqueria_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero):
     while True:
         fila_ataque_bot2=random.randint(2,len(tablero)-1)
         columna_ataque_de_bot2=random.randint(3,len(tablero[0])-1)
@@ -409,15 +409,15 @@ def mierda_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero):
         print ("-------------------------------------------")
         print ("-             Bot_2 ha ganado             -")
         print ("-------------------------------------------")
-        mierda=1
-        return mierda
+        ataque=1
+        return ataque
     else:
         tablero[fila_ataque_bot2][columna_ataque_de_bot2]="X"
         print_tablero(tablero)
  
  
  
-#ganador2=mierda_de_bot2(bot1_fila_lugar,bot1_col_lugar)
+#ganador2=porqueria_de_bot2(bot1_fila_lugar,bot1_col_lugar)
  
  
  
@@ -449,10 +449,10 @@ def jugadorVSbot(tablero,tablero_bot):
         coordenada_jugador=ataque_jugador()
         jugador_fila=coordenada_jugador[0]
         jugador_col=coordenada_jugador[1]
-        ganador=mierda(jugador_fila,jugador_col,barco_fila,barco_col, tablero)
+        ganador=ataque(jugador_fila,jugador_col,barco_fila,barco_col, tablero)
         if ganador==1:
-            mierda1=1
-            return mierda1
+            ataque1=1
+            return ataque1
             input("Precione ENTER para volver al men£ principal")
             print (" ")
             break
@@ -462,10 +462,10 @@ def jugadorVSbot(tablero,tablero_bot):
         os.system("cls")
         print ("\n------------Turno de tu enemigo---------------\n")
  
-        ganador2=mierda_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot)
+        ganador2=porqueria_de_bot(jugador_fila_lugar,jugador_col_lugar,tablero_bot)
         if ganador2==1:
-            mierda1=1
-            return mierda1
+            ataque1=1
+            return ataque1
             input("Precione ENTER para volver al men£ principal")
             break
         else:
@@ -500,7 +500,7 @@ def JugadorVsJugador(tablero,tablero_bot):
         coordenada_jugador=ataque_jugador()
         jugador_fila=coordenada_jugador[0]
         jugador_col=coordenada_jugador[1]
-        ganador=mierda1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tablero)
+        ganador=ataque1(jugador_fila,jugador_col,jugador_fila_lugar2,jugador_col_lugar2,tablero)
         if ganador ==1:
             input("Precione ENTER para volver al men£ principal")
             break
@@ -511,7 +511,7 @@ def JugadorVsJugador(tablero,tablero_bot):
         coordenada_jugador2=ataque_jugador2()
         jugador_fila2=coordenada_jugador2[0]
         jugador_col2=coordenada_jugador2[1]
-        ganador2=mierda2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tablero_bot)
+        ganador2=ataque2(jugador_fila2,jugador_col2,jugador_fila_lugar,jugador_col_lugar,tablero_bot)
         if ganador2==1:
             input("Precione ENTER para volver al men£ principal")
             break
@@ -579,14 +579,14 @@ def botVSbot(tablero,tablero_bot):
  
  
         print ("\n--------Turno Bot_1--------------\n")
-        ganador1=mierda_de_bot1(bot2_fila_lugar,bot2_col_lugar,tablero_bot)
+        ganador1=porqueria_de_bot1(bot2_fila_lugar,bot2_col_lugar,tablero_bot)
         if ganador1==1:
             input("Precione ENTER para volver al men£ principal\n")
             print (" \n.")
  
             break
         print ("\n--------Turno Bot_2--------------\n")
-        ganador2=mierda_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero)
+        ganador2=porqueria_de_bot2(bot1_fila_lugar,bot1_col_lugar,tablero)
         if ganador2==1:
             input("Precione ENTER para volver al men£ principal\n")
             print (" \n.")
