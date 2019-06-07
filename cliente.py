@@ -58,7 +58,7 @@ print('Escriba <<salir()>> para salir de la sala')
 print('Espere la respuesta del servidor...')
 
 while True:
-
+    dado1 = []
     message = soc.recv(2048)
     message = message.decode()
     print(message)  #imprime el mensaje del servidor
@@ -74,6 +74,6 @@ while True:
         print("\n")
     if message == '':
         j1 = dado_imprimir(dado1,intentos)
-        print ("Has sacado saco un total de : ", j1)
+        # print ("Has sacado saco un total de : ", j1)
         message = "{}".format(j1)
     soc.send(message.encode())
